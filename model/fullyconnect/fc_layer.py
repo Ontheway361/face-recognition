@@ -63,7 +63,7 @@ class FullyConnectedLayer(nn.Module):
 
         elif self.args.fc_mode == 'arcface':
             sin_theta   = torch.sqrt(1.0 - torch.pow(cosin_simi, 2))
-            cos_theta_m = (cosin_simi * self.cos_m - sin_theta * self.sin_m) * self.args.scale
+            cos_theta_m = cosin_simi * self.cos_m - sin_theta * self.sin_m
             if self.args.easy_margin:
                 score = torch.where(cosin_simi > 0, cos_theta_m, cosin_simi)
             else:
